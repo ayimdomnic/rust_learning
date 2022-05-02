@@ -29,4 +29,11 @@ fn main() {
         "The flight {} is leaving at {} and will be going to {}",
         flight_number, time, destination
     );
+
+    if !flights.contains_key(flight_number) {
+        println!("Flight {} is not in the database", flight_number);
+        flights.insert(flight_number, ("13:45", "New york"));
+    } else {
+        println!("Flight {} is in the database", flight_number);
+    }
 }
