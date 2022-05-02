@@ -1,9 +1,3 @@
-struct Waypoint {
-    name: String,
-    latitude: f64,
-    longitude: f64,
-}
-
 struct Boeing {
     required_crew: u8,
     range: u16,
@@ -38,24 +32,6 @@ impl Flight for Airbus {
     }
 }
 
-struct Segment {
-    start: Waypoint,
-    end: Waypoint,
-}
-
-impl Segment {
-    fn new(start: Waypoint, end: Waypoint) -> Self {
-        Self { start, end }
-    }
-
-    fn distance(&self) -> f32 {
-        let lat_diff = self.start.latitude - self.end.latitude;
-        let long_diff = self.start.longitude - self.end.longitude;
-        let distance = (lat_diff.powi(2) + long_diff.powi(2)).sqrt();
-        distance as f32
-    }
-}
-
 fn main() {
     let boeing = Boeing {
         required_crew: 4,
@@ -70,7 +46,10 @@ fn main() {
     let boeing_is_legal = boeing.is_ilegal(boeing.required_crew, 18, boeing.range, 2385);
     let airbus_is_legal = airbus.is_ilegal(airbus.required_crew, 4, airbus.range, 2385);
 
-    println!("Boeing is legal: {}\nAirbus is legal: {}", boeing_is_legal, airbus_is_legal);
+    println!(
+        "Boeing is legal: {}\nAirbus is legal: {}",
+        boeing_is_legal, airbus_is_legal
+    );
 }
 
 //methods
