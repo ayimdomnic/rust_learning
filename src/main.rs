@@ -1,3 +1,5 @@
+mod geo;
+
 use std::sync::mpsc;
 use std::sync::mpsc::{Receiver, Sender};
 use std::thread;
@@ -15,7 +17,6 @@ fn main() {
     //Concurrency hazards
     //1. Race Conditions
     //2. Deadlocks
-
     let outer_scope: i32 = 412;
 
     let join_handle = thread::spawn(move || outer_scope * 2);
@@ -46,6 +47,8 @@ fn main() {
         Ok(_) => {}
         Err(_) => {}
     }
+
+    geo::distance(0.0, 0.0, 0.0, 0.0);
 
     //shared memory
     //messaging
